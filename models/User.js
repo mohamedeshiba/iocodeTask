@@ -1,4 +1,3 @@
-const validateEmail =  require("../Validations/validateEmail");
 
 
 /**
@@ -22,10 +21,6 @@ const UserSchema = new Schema({
         type: String,
         unique: true,
         required: true,
-        validate: {
-            validator: validateEmail,
-            message: `{VALUE} is not in the form of a mail`,
-        },
     },
     password: {
         type: String,

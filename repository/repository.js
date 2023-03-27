@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 class BaseRepository {
     constructor(model) {
         this.model = model;
@@ -10,6 +12,7 @@ class BaseRepository {
     }
 
     async read(id) {
+        console.log(mongoose.isValidObjectId('0123456789ab')); // true
         const entity = await this.model.findById(id);
         return entity ? entity.toObject() : null;
     }
@@ -20,6 +23,10 @@ class BaseRepository {
 
     async delete(id) {
         await this.model.findByIdAndDelete(id);
+    }
+    async findAll(){
+        const entity = await this.model.find({});
+        return entity;
     }
 }
 

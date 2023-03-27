@@ -17,7 +17,12 @@ const logger = require('morgan');// http logger
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 const dotenv = require("dotenv");
+
 const MongoDBHandler = require("./database/MongoDB");
+const UserRepository = require("./repository/userRepository");
+
+const user_router = require("./routes/user");
+
 
 /**
  * loads the .env file into the process.env (environment variables)
@@ -35,8 +40,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 dotenv.config();
 const MONGODB_URI = process.env.MONGODB_URI;
-
 const handler = new MongoDBHandler(MONGODB_URI);
 handler.connect().then((result)=>console.log("Connected successfully")).catch((err)=>console.log(err));
+
+app.use("/user/", user_router);
+
+app.listen(PORT, () => {
+    console.log(`Listening to requests on http://localhost:${PORT}`);
+});
+
 
 module.exports = app;
