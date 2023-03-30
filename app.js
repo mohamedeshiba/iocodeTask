@@ -22,7 +22,7 @@ const MongoDBHandler = require("./database/MongoDB");
 const UserRepository = require("./repository/userRepository");
 
 const user_router = require("./routes/user");
-
+const auth_router = require("./routes/authenticationServer");
 
 /**
  * loads the .env file into the process.env (environment variables)
@@ -42,7 +42,7 @@ dotenv.config();
 const MONGODB_URI = process.env.MONGODB_URI;
 const handler = new MongoDBHandler(MONGODB_URI);
 handler.connect().then((result)=>console.log("Connected successfully")).catch((err)=>console.log(err));
-
+app.use("/user/auth/",auth_router);
 app.use("/user/", user_router);
 
 app.listen(PORT, () => {
