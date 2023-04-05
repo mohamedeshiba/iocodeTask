@@ -24,12 +24,13 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    console.log(this.signupForm.value);
     if (this.signupForm.valid) {
       const user: User = this.signupForm.value;
       user.isAdmin = true;
       this.userService.createUser(user).subscribe(
-        (response) => console.log('User created successfully', response),
+        (response) =>{ console.log('User created successfully', response)
+        
+      },
         (error) => console.error('Failed to create user', error)
       );
     }

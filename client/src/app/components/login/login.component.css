@@ -82,7 +82,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #0066cc;
+  background-color: #050505;
   transform: scale(1.1);
 }
 

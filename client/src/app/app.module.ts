@@ -11,6 +11,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BlockComponent } from './components/block/block.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // default route
   { path: 'login', component: LoginComponent },
@@ -26,12 +29,15 @@ const routes: Routes = [
     RegisterComponent,
     NavbarComponent,
     BlockComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule ,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatIconModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

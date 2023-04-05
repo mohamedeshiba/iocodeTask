@@ -1,11 +1,23 @@
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <table>
     <thead>
+      <tr>
+        <td colspan="7" class="title-row">
+          <span class="table-title">Manage users</span>
+          <button class="add-user-button">
+            <i class="material-icons">add </i> Add new user
+          </button>
+        </td>
+      </tr>
       <tr>
         <th>Email</th>
         <th>Account ID</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Phone Number</th>
+        <th>Edit </th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +27,11 @@
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
         <td>{{ user.phoneNumber }}</td>
+        <td> <i class="material-icons">delete</i>
+        </td>
+        <td> <i class="material-icons">edit</i>
+        </td>
+
 
       </tr>
     </tbody>
