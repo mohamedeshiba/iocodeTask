@@ -1,0 +1,106 @@
+/* Background Gradient */
+body {
+    background: linear-gradient(to right bottom, #0f2027, #203a43, #2c5364);
+  }
+  
+  /* Signup Container */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    border: 0px solid steelblue;
+    overflow: hidden;
+    margin-top: -100px;
+
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 10px 15px     rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    width: 500px;
+  }
+  
+  /* Title */
+  h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+    
+  /* Form */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  label {
+    color: #555;
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: -20px;
+    margin-bottom: 50px; /* add margin here */
+}
+  
+  
+  input {
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  
+  /* Submit Button */
+  button[type="submit"] {
+    background-color: rgb(3, 91, 3); 
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0066cc;
+    transform: scale(1.1);
+  }
+  
+  /* Error Message */
+  .error {
+    color: #f00;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Success Message */
+  .success {
+    color: #0c0;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  

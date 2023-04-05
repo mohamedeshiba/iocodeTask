@@ -1,0 +1,13 @@
+/* themes.scss */
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+
+.primary-button {
+  background-color: $primary-color;
+  color: white;
+}
+
+.secondary-button {
+  background-color: $secondary-color;
+  color: white;
+}

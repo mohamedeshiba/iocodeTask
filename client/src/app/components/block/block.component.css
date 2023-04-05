@@ -1,0 +1,19 @@
+.colored-area{
+    background-color: #0066cc;
+    display: flex;
+    height: 300PX;
+    padding: 20px;
+    margin: 20PX;
+  }
+  
+  .colored-area img {
+    width: 50px;
+    height: 20px;
+    margin: 8px;
+  }
+  .colored-area h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }

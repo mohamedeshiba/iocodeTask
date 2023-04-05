@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 
+const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private apiURL = 'http://localhost:5000/user';
+  private apiURL = 'http://localhost:8000/user';
 
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiURL}`);
+    console.log("here");
+    let response =  this.http.get<User[]>(`${this.apiURL}`);
+    console.log("hello",response);
+    return response;
   }
 
   getUserById(id: number): Observable<User> {
@@ -22,11 +30,14 @@ export class UserService {
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.apiURL}/register`, user);
+    console.log("heeeeeere");
+    const ans =  this.http.post<User>(`${this.apiURL}/register`, user,httpOptions);
+    console.log(ans);
+    return ans;
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiURL}/${user.id}`, user);
+    return this.http.put<User>(`${this.apiURL}/${user._id}`, user,httpOptions);
   }
 
   deleteUser(id: number): Observable<any> {

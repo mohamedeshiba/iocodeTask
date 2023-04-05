@@ -1,0 +1,41 @@
+<app-block></app-block>
+<div class="container">
+    <div class="card">
+      <h1>Sign Up</h1>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="userName">First Name</label>
+          <input type="text" id="firstName" formControlName="firstName" required="true">
+        </div>
+
+        <div class="form-group">
+            <label for="userName">Last Name</label>
+            <input type="text" id="lastName" formControlName="lastName" required>
+          </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="tel" id="phoneNumber" formControlName="phoneNumber" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" formControlName="password" required="">
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" formControlName="confirmPassword" required>
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+      <div  style = "margin-top: 5px;">
+        Already have an account?  <a routerLink="/login"> Login </a>
+      </div>
+
+    </div>
+  </div>
+  

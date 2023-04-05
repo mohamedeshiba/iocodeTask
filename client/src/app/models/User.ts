@@ -1,9 +1,11 @@
 export interface User {
-    id: number;
-    clientId: number;
-    accountId: string;
-    description: string;
-    tokenId: string;
-    tokenValue: string;
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    isAdmin: boolean;
+    homeAddress:string,
+    phoneNumber:string,
+    userName:string,
   }
   
