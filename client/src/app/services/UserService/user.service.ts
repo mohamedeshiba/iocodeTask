@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
+import { LoginResponse } from 'src/app/models/LoginResponse';
+
+
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -30,7 +33,6 @@ export class UserService {
   }
 
   createUser(user: User): Observable<User> {
-    console.log("heeeeeere");
     const ans =  this.http.post<User>(`${this.apiURL}/register`, user,httpOptions);
     console.log(ans);
     return ans;
@@ -42,5 +44,10 @@ export class UserService {
 
   deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.apiURL}/${id}`);
+  }
+
+  loginUser(email: string, password: string): Observable<LoginResponse> {
+    const user = { email, password };
+    return this.http.post<LoginResponse>(`${this.apiURL}/auth/login`, user, httpOptions);
   }
 }

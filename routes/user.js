@@ -13,15 +13,17 @@ router.delete('/:id', deleteUser);
 // Define handler functions for each route
 async function createUser(req, res) {
   try {
+    console.log(req.body.data);
     const user = await userRepository.create(req.body.data);
   }
   catch (err){
-    //todo handle errors later
+//console.log(err)
   }
 }
 async function getAllUsers(req,res) {
   try {
     const users = await userRepository.findAll();
+   // console.log(users);
     res.status(200).send(users);
   }
   catch(err){

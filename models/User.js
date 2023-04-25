@@ -34,12 +34,6 @@ const UserSchema = new Schema({
         type: String,
         required: false,
     },
-
-    userName: {
-        type: String,
-        unique: true,
-        required: true,
-    },
     phoneNumber: {
         type: String,
         required: true,
