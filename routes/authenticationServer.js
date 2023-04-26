@@ -9,25 +9,22 @@ const userRepository = new UserRepository();
 app.use(express.json());
 
 auth_Router.post("/login", async (req, res) => {
-    console.log("here2");
     const {email, password} = req.body;
     const user = await userRepository.findOneByEmail(email);
-    if (user) {
-        const compare = await bcrypt.compare(password, user.password);
-        if (compare) {
-            const {_id, email, password, isAdmin} = user;
-            const authenticateUser = {_id, email, password, isAdmin};
-            const token = generateAccessToken(authenticateUser);
-            res.status(200).json({auth: true, token: token, user:user});
-        }
-        else {
-            res.status(404).send({auth: false, message: "Wrong Password"});
-        }
+    if (!user) {
+        return res.status(404).json({auth: false, message: "User not found"});
     }
-    else {
-        res.status(404).send({auth: false, message: "User not found"});
+    const compare = await bcrypt.compare(password, user.password);
+    if (!compare) {
+        return res.status(404).json({auth: false, message: "Wrong Password"});
     }
+    password = user.password;
+    const {_id, isAdmin} = user;
+    const authenticateUser = {_id, email,password, isAdmin};
+    const token = generateAccessToken(authenticateUser);
+    res.status(200).send({auth: true, token: token, user:user});
 });
+
 
 
 function generateAccessToken(user) {
