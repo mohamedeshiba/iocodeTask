@@ -9,7 +9,7 @@ const userRepository = new UserRepository();
 app.use(express.json());
 
 auth_Router.post("/login", async (req, res) => {
-    const {email, password} = req.body;
+    let {email, password} = req.body;
     const user = await userRepository.findOneByEmail(email);
     if (!user) {
         return res.status(404).json({auth: false, message: "User not found"});

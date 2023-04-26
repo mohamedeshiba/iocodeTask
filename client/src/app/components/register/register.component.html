@@ -36,6 +36,10 @@
         Already have an account?  <a routerLink="/login"> Login </a>
       </div>
 
+      <div *ngIf="showSuccessMessage" class="success-message">
+        User created successfully!
+      </div>
+
     </div>
   </div>
   

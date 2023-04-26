@@ -33,6 +33,7 @@ export class UserService {
   }
 
   createUser(user: User): Observable<User> {
+    console.log("user",user);
     const ans =  this.http.post<User>(`${this.apiURL}/register`, user,httpOptions);
     console.log(ans);
     return ans;

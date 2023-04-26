@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from './../../services/UserService/user.service';
 import { User } from 'src/app/models/User';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,8 +12,10 @@ import { User } from 'src/app/models/User';
 })
 export class RegisterComponent {
   signupForm!: FormGroup;
+  showSuccessMessage:boolean = false;
 
-  constructor(private userService:UserService) {
+
+  constructor(private userService:UserService,private router: Router) {
     this.signupForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -23,16 +26,30 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit() {
+async onSubmit() {
     if (this.signupForm.valid) {
       const user: User = this.signupForm.value;
       user.isAdmin = true;
-      this.userService.createUser(user).subscribe(
-        (response) =>{ console.log('User created successfully', response)
-        
-      },
-        (error) => console.error('Failed to create user', error)
-      );
+      this.userService.createUser(user).subscribe({
+        next:(response) =>{ 
+          console.log('User created successfully', response);
+          this.showSuccessMessage = true;
+          (async () => {
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            this.showSuccessMessage = false;
+            this.router.navigate(['/login']);
+            })();
+            },
+       error: (error) => {
+          if (error.status === 400) {
+            alert('User already exists in the database');
+          } else {
+            console.error('Failed to create user', error);
+          }
+        }
+       
+    });
     }
   }
+
 }

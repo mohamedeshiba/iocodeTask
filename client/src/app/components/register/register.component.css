@@ -103,4 +103,12 @@ body {
     font-size: 14px;
     margin-top: 5px;
   }
+
+  .success-message {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+  }
   

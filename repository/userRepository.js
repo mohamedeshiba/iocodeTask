@@ -1,5 +1,7 @@
 const UserModel = require("../models/User");
 const BaseRepository = require("./repository");
+const bcrypt = require('bcrypt');
+
 
 class UserRepository extends BaseRepository {
     constructor() {
@@ -15,19 +17,21 @@ class UserRepository extends BaseRepository {
 
 async register(entity){
         try {
-            const {password} = entity;
+            const {email, password} = entity;
+            const userExists = await this.findOneByEmail(email);
+            if(userExists){
+                throw new Error("User already exists with this email");
+            }
             const hashedPassword = bcrypt.hashSync(password,10);
             entity.password = hashedPassword;
             const user = UserModel(entity);
             await user.save();
-            res.status(201).send("New user registered Successfully");
+            return user;
         } catch (err) {
             console.error(err);
-            res.status(500).send("Database error " + err);
         }
      }
-
-    
 }
+
 
 module.exports = UserRepository;
