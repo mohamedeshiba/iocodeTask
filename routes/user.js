@@ -11,14 +11,14 @@ router.put('/:id', updateUser);
 router.delete('/:id', deleteUser);
 
 // Define handler functions for each route
-async function createUser(req, res) {
+async function createUser(req, res,error) {
   try {
     const user = await userRepository.create(req.body);
     res.status(201).send(user);
   }
 catch (err){
-    console.log(err);
-    res.status(400).send({error: err.message});
+   // console.log(err);
+    error.status(400).send({error: err.message});
   }
 
 }

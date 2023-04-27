@@ -6,6 +6,5 @@ export interface User {
     isAdmin: boolean;
     homeAddress:string,
     phoneNumber:string,
-    userName:string,
   }
   

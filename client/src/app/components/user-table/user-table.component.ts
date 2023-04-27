@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { UserService } from '../../services/UserService/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateUserComponent } from '../update-user/update-user.component';
+
 
 @Component({
   selector: 'app-user-table',
@@ -10,7 +13,7 @@ import { UserService } from '../../services/UserService/user.service';
 export class UserTableComponent implements OnInit {
   users: User[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private dialog: MatDialog) { }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(
@@ -24,11 +27,17 @@ export class UserTableComponent implements OnInit {
     );
   }
 
-  editUser(user: User) {
-    // handle edit user logic
+  updateUser(user: User) {
+    // const dialogRef = this.dialog.open(UpdateUserComponent, {
+    //   data: { user: user}
+    // });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    // });
   }
 
-  deleteUser(userId: number) {
+  deleteUser(user:User) {
     // handle delete user logic
   }
 }

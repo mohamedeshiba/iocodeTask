@@ -40,6 +40,17 @@
         User created successfully!
       </div>
 
+      <div *ngIf="showUserError" class="success-message" style="background-color: red;">
+        Please enter valid data
+      </div>
+
+<div *ngIf="userAlreadyExists" class="success-message" style="background-color: red;">
+        User already exists
+      </div>
+
+
+
+
     </div>
   </div>
   

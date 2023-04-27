@@ -11,9 +11,7 @@ body {
   height: 100vh;
   border: 0px solid steelblue;
   overflow: hidden;
-  margin-top: -250px;
-  
-
+  margin-top: -300px;
 }
 
 .card {

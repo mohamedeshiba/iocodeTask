@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   signupForm!: FormGroup;
   showSuccessMessage:boolean = false;
+  userAlreadyExists :boolean = false;
+  showUserError : boolean = false;
 
 
   constructor(private userService:UserService,private router: Router) {
@@ -33,23 +35,46 @@ async onSubmit() {
       this.userService.createUser(user).subscribe({
         next:(response) =>{ 
           console.log('User created successfully', response);
-          this.showSuccessMessage = true;
-          (async () => {
-            await new Promise(resolve => setTimeout(resolve, 3000));
-            this.showSuccessMessage = false;
-            this.router.navigate(['/login']);
-            })();
-            },
+         this.displaySucessMessage();
+          },
        error: (error) => {
-          if (error.status === 400) {
-            alert('User already exists in the database');
-          } else {
+          if (error.status == 400) {
+            this.displayUserExistsMessage();
+          }
+           else {
             console.error('Failed to create user', error);
           }
         }
        
     });
     }
+    else{
+      this.displaySucessMessage();
+    }
+  }
+  async displaySucessMessage(){
+    this.showSuccessMessage = true;
+    (async () => {
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      this.showSuccessMessage = false;
+      this.router.navigate(['/login']);
+      })();
+  }
+
+  async displayErrorMessage(){
+    this.showUserError = true;
+    (async () => {
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      this.showUserError = false;
+      })();
+  }
+  
+  async displayUserExistsMessage(){
+    this.userAlreadyExists = true;
+    (async () => {
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      this.userAlreadyExists = false;
+      })();
   }
 
 }
